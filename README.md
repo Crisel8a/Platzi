@@ -21,134 +21,53 @@
     </a>    
   
 </p>
-📐 Modelado de Teoría de Grupos en C
 
-Este proyecto implementa una estructura algebraica de grupo usando el lenguaje C, conectando conceptos de teoría de grupos con programación de bajo nivel.
+# 📐 Teoría de Grupos en C
 
-El objetivo es representar un grupo finito y verificar computacionalmente propiedades fundamentales como la identidad y los inversos.
+Este proyecto implementa una **estructura algebraica de grupo** utilizando el lenguaje **C**, con el objetivo de conectar conceptos de **álgebra abstracta** con **programación de bajo nivel**.
 
-🔢 Definición matemática
+Se modela un **grupo finito** y se verifican computacionalmente propiedades fundamentales como el **elemento identidad** y los **inversos**.
 
-Un grupo es un par ordenado (G, ★), donde:
+---
 
-G es un conjunto no vacío
+## 🔢 Definición de grupo
 
-★ : G × G → G es una operación binaria
+Un **grupo** es un par (G, ★), donde:
+
+- G es un conjunto no vacío
+- ★ es una operación binaria definida en G
 
 que satisface los siguientes axiomas:
 
-Clausura
-Para todo a, b ∈ G, se cumple que a ★ b ∈ G
+1. **Clausura**  
+   Para todo a, b en G, el resultado de a ★ b pertenece a G.
 
-Asociatividad
-(a ★ b) ★ c = a ★ (b ★ c)
+2. **Asociatividad**  
+   (a ★ b) ★ c = a ★ (b ★ c) para todo a, b, c en G.
 
-Elemento identidad
-Existe un elemento e ∈ G tal que, para todo a ∈ G:
-e ★ a = a ★ e = a
+3. **Elemento identidad**  
+   Existe un elemento e en G tal que:
+   - e ★ a = a
+   - a ★ e = a  
+   para todo a en G.
 
-Elemento inverso
-Para todo a ∈ G, existe un elemento a⁻¹ ∈ G tal que:
-a ★ a⁻¹ = a⁻¹ ★ a = e
+4. **Elemento inverso**  
+   Para todo a en G, existe un elemento a⁻¹ en G tal que:
+   - a ★ a⁻¹ = e
+   - a⁻¹ ★ a = e
 
-🧠 Modelado computacional
+---
 
-El grupo se representa en C mediante la estructura:
+## 🧠 Modelado computacional
 
+El grupo se representa en C usando la siguiente estructura:
+
+```c
 struct group
 {
     char name[50];                      // Nombre del grupo
-    int order;                          // Número de elementos |G|
+    int order;                          // Número de elementos
     int identity;                       // Elemento identidad
     int elements[MAX_ELEMENTS];         // Conjunto de elementos
     int operation[MAX_ELEMENTS][MAX_ELEMENTS]; // Tabla de Cayley
 };
-
-
-Esta estructura representa directamente la terna (G, ★, e).
-
-La tabla de Cayley permite definir explícitamente la operación binaria.
-
-🔁 Grupo implementado: Z₅
-
-Se implementa el grupo cíclico:
-
-Z₅ = {0, 1, 2, 3, 4}
-
-con la operación:
-
-a ★ b = (a + b) mod 5
-
-Propiedades del grupo:
-
-Finito
-
-Abeliano
-
-Cíclico
-
-De orden 5
-
-✅ Verificación del elemento identidad
-
-La función:
-
-int is_identity(struct group *G, int e)
-
-
-verifica si un elemento e cumple:
-
-e ★ a = a y a ★ e = a para todo a ∈ G
-
-confirmando así la identidad del grupo.
-
-🔄 Cálculo de inversos
-
-La función:
-
-int inverse_of(struct group *G, int a)
-
-
-busca un elemento b ∈ G tal que:
-
-a ★ b = b ★ a = e
-
-Si existe, b es el inverso de a.
-
-En el grupo Z₅:
-
-El inverso de 0 es 0
-
-El inverso de 1 es 4
-
-El inverso de 2 es 3
-
-El inverso de 3 es 2
-
-El inverso de 4 es 1
-
-🖥️ Salida del programa
-
-El programa imprime:
-
-Información general del grupo
-
-El elemento identidad
-
-El inverso de cada elemento
-
-demostrando cómo los axiomas del grupo pueden verificarse mediante código.
-
-🚀 Posibles extensiones
-
-Verificar automáticamente todos los axiomas de grupo
-
-Implementar subgrupos
-
-Trabajar con grupos no abelianos (ej. S₃)
-
-Implementar homomorfismos e isomorfismos
-
-🧮 Conclusión
-
-Este proyecto muestra cómo una estructura abstracta de la teoría de grupos puede representarse computacionalmente en C, conectando matemáticas puras con programación de sistemas.

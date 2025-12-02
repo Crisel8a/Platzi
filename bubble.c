@@ -18,7 +18,7 @@ void bubbleSort(int vector_entrada[], int n)
     {
         for(j=0; j <n-i-1; j++)
         {
-            if(vector_entrada[j] > vector_entrada[j+1])
+            if(vector_entrada[j] < vector_entrada[j+1]) // > para ordenamiento ascendente
             cambiar_pos(&vector_entrada[j], &vector_entrada[j+1]);
         }
     }
@@ -27,7 +27,7 @@ void bubbleSort(int vector_entrada[], int n)
 int print_array(int vector_entrada[], int n)
 {
     int i;
-    for(i=0; i<n-1; i++)
+    for(i=0; i<n; i++) //i < n-1 para que sea de menor a mayor
         printf("%d  ,", vector_entrada[i]);
     printf("\n Fin del ordenamiento");
 }
